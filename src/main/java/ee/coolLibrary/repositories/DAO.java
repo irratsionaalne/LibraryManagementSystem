@@ -11,11 +11,8 @@ import org.hibernate.Transaction;
 public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRepository <ENT, ID> {
     private Session session = DatabaseUtil.getSessionFactory().openSession();
     private Transaction transaction = session.getTransaction();
-private Class<ENT> entClass;
 
-    public DAO(Class<ENT> entClass) {
-        this.entClass = entClass;
-    }
+
 
     @Override
     public ENT save(ENT entity) {
@@ -23,7 +20,7 @@ private Class<ENT> entClass;
             transaction.begin();
             int id = (Integer) session.save(entity);
             transaction.commit();
-            return findById(entClass, entity.getId());
+            return findById(entity.getClass(), entity.getId());
         } catch (HibernateException e) {
             transaction.rollback();
             return entity;
@@ -31,8 +28,8 @@ private Class<ENT> entClass;
     }
 
     @Override
-    public ENT findById(Class<ENT> entClass, ID id) {
-        return session.find(entClass, id);
+    public ENT findById(Class<?> entClass, ID id) {
+        return (ENT) session.find(entClass, id);
     }
 
     @Override
