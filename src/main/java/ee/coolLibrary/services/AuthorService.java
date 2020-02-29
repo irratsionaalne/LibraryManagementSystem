@@ -2,6 +2,7 @@ package ee.coolLibrary.services;
 
 import com.google.common.base.Strings;
 import ee.coolLibrary.entities.Author;
+import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
 
 import java.util.ArrayList;
@@ -52,5 +53,17 @@ public class AuthorService extends AbstractService<AuthorRepository, Author, Int
             authorSet.add(author);
         }
         return authorSet;
+    }
+
+    public Author addBook (Author author, Book book) {
+        if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
+        author.addBook(book);
+       return save(author);
+    }
+
+    public Author deleteBook (Author author, Book book) {
+        if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
+        author.removeBook(book);
+        return save(author);
     }
 }
