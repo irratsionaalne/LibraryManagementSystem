@@ -24,7 +24,8 @@ public class Main {
         bookRepository.save(book);
 
         System.out.println(saved);
-
+        System.out.println(saved.getAuthors().toString());
+        System.out.println(saved.getReviews().toString());
 
 
         DatabaseUtil.shutdown();

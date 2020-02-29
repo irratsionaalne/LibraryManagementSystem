@@ -52,6 +52,14 @@ public class Book implements SimpleEntity <Integer> {
         return id;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
     public String getTitle() {
         return title;
     }
