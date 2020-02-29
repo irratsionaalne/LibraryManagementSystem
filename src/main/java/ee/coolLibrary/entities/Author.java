@@ -1,22 +1,22 @@
 package ee.coolLibrary.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table (name = "Author")
 public class Author {
 @Id
    private int id;
 
-
+@Column (name = "first_name")
    private String firstName;
-
+@Column (name = "last_name")
    private String lastName;
    @ManyToMany
+   @JoinTable(name = "Author_Books", joinColumns = {@JoinColumn (name = "author_id"), @JoinColumn (name = "book_id")})
    private List<Book> books;
 
     public Author(String firstName, String lastName) {
