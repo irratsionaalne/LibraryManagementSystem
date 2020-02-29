@@ -2,12 +2,13 @@ package ee.coolLibrary.repositories;
 
 import ee.coolLibrary.entities.Author;
 
-public class AuthorRepository implements SimpleRepository <Author, String> {
+public class AuthorRepository implements SimpleRepository <Author, Integer> {
+
     public Author save(Author entity) {
         return null;
     }
 
-    public Author findById(String s) {
+    public Author findById(Integer integer) {
         return null;
     }
 
