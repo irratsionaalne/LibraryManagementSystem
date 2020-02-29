@@ -20,8 +20,7 @@ public class Book implements SimpleEntity <Integer> {
     private int publishYear;
     @Column (name = "description")
     private String description;
-    @OneToMany
-    @JoinColumn (name = "review_id")
+    @OneToMany (mappedBy = "book")
     private List<Review> reviews;
     @ManyToMany (mappedBy = "books")
     private List<Author> authors;

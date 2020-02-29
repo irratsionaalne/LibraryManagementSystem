@@ -11,15 +11,17 @@ public class Main {
     public static void main(String[] args) {
         DatabaseUtil.getSessionFactory();
         AuthorRepository authorRepository = new AuthorRepository(Author.class);
+        BookRepository bookRepository = new BookRepository(Book.class);
+        ReviewRepository reviewRepository = new ReviewRepository(Review.class);
         Author author = new Author("saeed", "Saeed");
         Book book = new Book("Sipsik", "Childrens book",2020, "Just a test");
-        BookRepository bookRepository = new BookRepository(Book.class);
-        bookRepository.save(book);
-        ReviewRepository reviewRepository = new ReviewRepository(Review.class);
-        Review review = new Review(book,5,"It was good");
-        book.addReview(review);
+        book.addAuthor(author);
+        Book saved = bookRepository.save(book);
+        Review review = new Review(book, 5, "fdfdf");
         reviewRepository.save(review);
-
+        book.addReview(review);
+        bookRepository.save(book);
+        System.out.println(saved);
         DatabaseUtil.shutdown();
 
     }
