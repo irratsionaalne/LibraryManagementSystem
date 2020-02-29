@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "Book")
-public class Book {
+public class Book implements SimpleEntity <Integer> {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
@@ -46,6 +46,11 @@ public class Book {
     }
 
     public Book() {
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public String getTitle() {

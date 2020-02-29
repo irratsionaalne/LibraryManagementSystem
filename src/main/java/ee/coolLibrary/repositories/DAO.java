@@ -3,21 +3,27 @@ package ee.coolLibrary.repositories;
 import com.sun.xml.bind.v2.model.core.ID;
 import ee.coolLibrary.DatabaseUtil;
 import ee.coolLibrary.entities.Author;
+import ee.coolLibrary.entities.SimpleEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class DAO implements SimpleRepository {
+public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRepository <ENT, ID> {
     private Session session = DatabaseUtil.getSessionFactory().openSession();
     private Transaction transaction = session.getTransaction();
+private Class<ENT> entClass;
+
+    public DAO(Class<ENT> entClass) {
+        this.entClass = entClass;
+    }
 
     @Override
-    public Object save(Object entity) {
+    public ENT save(ENT entity) {
         try {
             transaction.begin();
             int id = (Integer) session.save(entity);
             transaction.commit();
-            return findById(entity, id);
+            return findById(entClass, entity.getId());
         } catch (HibernateException e) {
             transaction.rollback();
             return entity;
@@ -25,12 +31,12 @@ public class DAO implements SimpleRepository {
     }
 
     @Override
-    public Object findById(Object entity, Object o) {
-        return session.find(Object.class, o);
+    public ENT findById(Class<ENT> entClass, ID id) {
+        return session.find(entClass, id);
     }
 
     @Override
-    public Object delete(Object entity) {
+    public ENT delete(ENT entity) {
         try {
             transaction.begin();
             session.delete(entity);
@@ -42,7 +48,7 @@ public class DAO implements SimpleRepository {
     }
 
     @Override
-    public Object update(Object entity) {
+    public ENT update(ENT entity) {
         try {
             transaction.begin();
             session.update(entity);
@@ -54,7 +60,7 @@ public class DAO implements SimpleRepository {
     }
 
     @Override
-    public Iterable findAll() {
+    public Iterable<ENT> findAll() {
         return session.createCriteria(Object.class).list();
     }
 }

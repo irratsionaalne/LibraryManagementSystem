@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "Author")
-public class Author {
+public class Author implements SimpleEntity <Integer> {
 @Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
 @Column (name = "id")
@@ -35,6 +35,12 @@ public class Author {
     }
 
     public Author() {
+    }
+
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public String getFirstName() {

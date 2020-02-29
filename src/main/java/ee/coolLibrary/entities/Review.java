@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Review {
+public class Review implements SimpleEntity <Integer> {
     @Id
             @GeneratedValue (strategy = GenerationType.IDENTITY)
             @Column (name = "id")
@@ -38,6 +38,11 @@ public class Review {
     }
 
     public Review() {
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public int getScore() {
