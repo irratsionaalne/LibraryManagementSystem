@@ -4,8 +4,6 @@ import com.google.common.base.Strings;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
