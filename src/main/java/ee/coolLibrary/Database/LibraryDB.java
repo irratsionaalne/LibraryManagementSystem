@@ -1,4 +1,4 @@
-package db;
+package ee.coolLibrary.Database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -6,13 +6,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class LibraryDB {
-
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
