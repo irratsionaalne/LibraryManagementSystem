@@ -36,9 +36,9 @@ public class DatabaseUtil {
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
             properties.put(Environment.HBM2DDL_AUTO, "update");
             configuration.setProperties(properties);
-//            configuration.addAnnotatedClass(Author.class);
-//            configuration.addAnnotatedClass(Book.class);
-//            configuration.addAnnotatedClass(Review.class);
+            configuration.addAnnotatedClass(Author.class);
+            configuration.addAnnotatedClass(Book.class);
+            configuration.addAnnotatedClass(Review.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
