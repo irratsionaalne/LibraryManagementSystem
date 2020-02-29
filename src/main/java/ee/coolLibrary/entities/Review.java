@@ -1,18 +1,21 @@
 package ee.coolLibrary.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Review {
     @Id
+            @GeneratedValue (strategy = GenerationType.IDENTITY)
+            @Column (name = "id")
     int id;
     @ManyToOne
+    @JoinColumn (name = "book_id")
     Book book;
+    @Column (name = "score")
     int score;
+    @Column (name = "comment")
     String comment;
 
     public Review(Book book, int score, String comment) {

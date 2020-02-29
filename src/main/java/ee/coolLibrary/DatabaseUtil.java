@@ -38,7 +38,7 @@ public class DatabaseUtil {
             configuration.setProperties(properties);
 //            configuration.addAnnotatedClass(Author.class);
 //            configuration.addAnnotatedClass(Book.class);
-//            configuration.addAnnotatedClass(Review.class); 
+//            configuration.addAnnotatedClass(Review.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
