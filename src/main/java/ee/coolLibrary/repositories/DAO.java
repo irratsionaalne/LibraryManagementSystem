@@ -12,7 +12,11 @@ public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRe
     private Session session = DatabaseUtil.getSessionFactory().openSession();
     private Transaction transaction = session.getTransaction();
 
+    Class<ENT> entClass;
 
+    public DAO(Class<ENT> entClass) {
+        this.entClass = entClass;
+    }
 
     @Override
     public ENT save(ENT entity) {
@@ -20,7 +24,7 @@ public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRe
             transaction.begin();
             int id = (Integer) session.save(entity);
             transaction.commit();
-            return findById(entity.getClass(), entity.getId());
+            return findById(entity.getId());
         } catch (HibernateException e) {
             transaction.rollback();
             return entity;
@@ -28,7 +32,7 @@ public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRe
     }
 
     @Override
-    public ENT findById(Class<?> entClass, ID id) {
+    public ENT findById(ID id) {
         return (ENT) session.find(entClass, id);
     }
 
