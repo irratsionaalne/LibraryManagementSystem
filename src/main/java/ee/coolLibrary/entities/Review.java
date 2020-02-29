@@ -23,7 +23,7 @@ public class Review implements SimpleEntity <Integer> {
         if (score>10) {
             score=10;
         }
-        if (score<10) {
+        if (score<0) {
             score=0;
         }
         this.score = score;
