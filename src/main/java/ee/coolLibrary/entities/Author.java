@@ -38,6 +38,10 @@ public class Author implements SimpleEntity<Integer> {
     }
 
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
     @Override
     public Integer getId() {
         return id;

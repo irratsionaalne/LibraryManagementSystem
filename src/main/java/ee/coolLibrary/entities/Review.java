@@ -45,6 +45,14 @@ public class Review implements SimpleEntity <Integer> {
         return id;
     }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
     public int getScore() {
         return score;
     }

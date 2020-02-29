@@ -22,7 +22,9 @@ public class Main {
         book.addReview(review);
         bookRepository.save(book);
         System.out.println(saved);
+        System.out.println(saved.getAuthors().toString());
+        System.out.println(saved.getReviews().toString());
+        System.out.println(bookRepository.findAll());
         DatabaseUtil.shutdown();
-
     }
 }
