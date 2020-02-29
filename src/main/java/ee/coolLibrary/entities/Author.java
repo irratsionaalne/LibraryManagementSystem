@@ -1,15 +1,22 @@
 package ee.coolLibrary.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Author {
+@Id
    private int id;
+
+
    private String firstName;
+
    private String lastName;
+   @ManyToMany
    private List<Book> books;
 
     public Author(String firstName, String lastName) {
@@ -73,7 +80,6 @@ public class Author {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + books +
                 '}';
     }
 }
