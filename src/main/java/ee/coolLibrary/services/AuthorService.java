@@ -17,13 +17,11 @@ public class AuthorService extends AbstractService<AuthorRepository, Author, Int
     }
 
     @Override
-    public String save(Author author) {
+    public Author save(Author author) {
+        if (Objects.isNull(author)) throw new RuntimeException("Author is null");
         if (Strings.isNullOrEmpty(author.getFirstName()) || Strings.isNullOrEmpty(author.getLastName()))
-            return ("Last name or first name shouldn't be null!!!");
-       Author saved =  repository.save(author);
-       if (Objects.isNull(saved)) return "Something gone wrong";
-       return "Saved successful";
-
+            throw new RuntimeException("Last name or first name shouldn't be null!!!");
+        return repository.save(author);
     }
 
     @Override
@@ -57,13 +55,13 @@ public class AuthorService extends AbstractService<AuthorRepository, Author, Int
         return authorSet;
     }
 
-    public String addBook (Author author, Book book) {
+    public Author addBook (Author author, Book book) {
         if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.addBook(book);
        return save(author);
     }
 
-    public String deleteBook (Author author, Book book) {
+    public Author deleteBook (Author author, Book book) {
         if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.removeBook(book);
         return save(author);

@@ -6,7 +6,7 @@ import ee.coolLibrary.repositories.SimpleRepository;
 public interface SimpleService <ENT extends SimpleEntity<ID>, ID> {
 
 
-    String save (ENT entity);
+    ENT save (ENT entity);
     ENT findById (ID id);
     ENT delete (ENT entity);
     ENT update (ENT entity);

@@ -9,7 +9,7 @@ public class ReviewService extends AbstractService <ReviewRepository, Review, In
     }
 
     @Override
-    public String save(Review entity) {
+    public Review save(Review entity) {
         return null;
     }
 

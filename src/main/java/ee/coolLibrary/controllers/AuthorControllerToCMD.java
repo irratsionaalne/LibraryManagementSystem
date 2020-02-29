@@ -19,8 +19,8 @@ public class AuthorControllerToCMD {
         String firstNane = scanner.nextLine();
         String lastname = scanner.nextLine();
         Author author = new Author(firstNane,lastname);
-       String answer = authorService.save(author);
-        System.out.println(answer);
+       Author saved = authorService.save(author);
+        System.out.println(saved.getFirstName()+" "+saved.getLastName());
     }
 
 
