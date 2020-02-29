@@ -6,25 +6,25 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table (name = "Author")
-public class Author implements SimpleEntity <Integer> {
-@Id
-@GeneratedValue (strategy = GenerationType.IDENTITY)
-@Column (name = "id")
-   private int id;
+@Table(name = "Author")
+public class Author implements SimpleEntity<Integer> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-@Column (name = "first_name")
-   private String firstName;
-@Column (name = "last_name")
-   private String lastName;
-   @ManyToMany
-   @JoinTable(name = "Author_Books", joinColumns = {@JoinColumn (name = "author_id")}, inverseJoinColumns = {@JoinColumn (name = "book_id")})
-   private List<Book> books;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @ManyToMany
+    @JoinTable(name = "Author_Books", joinColumns = {@JoinColumn(name = "author_id")}, inverseJoinColumns = {@JoinColumn(name = "book_id")})
+    private List<Book> books;
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.books= new ArrayList<Book>();
+        this.books = new ArrayList<Book>();
     }
 
     public Author(int id, String firstName, String lastName, List<Book> books) {
@@ -59,10 +59,11 @@ public class Author implements SimpleEntity <Integer> {
         this.lastName = lastName;
     }
 
-    public void addBook (Book book) {
+    public void addBook(Book book) {
         books.add(book);
     }
-    public void removeBook (Book book) {
+
+    public void removeBook(Book book) {
         books.add(book);
     }
 

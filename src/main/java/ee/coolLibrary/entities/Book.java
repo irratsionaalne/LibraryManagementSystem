@@ -11,7 +11,7 @@ public class Book implements SimpleEntity <Integer> {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-   private int id;
+    private int id;
     @Column (name = "title")
     private String title;
     @Column (name = "genre")
