@@ -9,7 +9,7 @@ public class BookService extends AbstractService<BookRepository, Book, Integer> 
     }
 
     @Override
-    public Book save(Book entity) {
+    public String save(Book entity) {
         return null;
     }
 
