@@ -12,10 +12,10 @@ public class Review {
     int id;
     @ManyToOne
     Book book;
-    byte score;
+    int score;
     String comment;
 
-    public Review(Book book, byte score, String comment) {
+    public Review(Book book, int score, String comment) {
         this.book = book;
         if (score>10) {
             score=10;
@@ -27,7 +27,7 @@ public class Review {
         this.comment = comment;
     }
 
-    public Review(int id, Book book, byte score, String comment) {
+    public Review(int id, Book book, int score, String comment) {
         this.id = id;
         this.book = book;
         this.score = score;
@@ -37,11 +37,11 @@ public class Review {
     public Review() {
     }
 
-    public byte getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(byte score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
