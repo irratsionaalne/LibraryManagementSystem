@@ -1,24 +1,29 @@
 package ee.coolLibrary.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table (name = "Book")
 public class Book {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
    private int id;
+    @Column (name = "title")
     private String title;
+    @Column (name = "genre")
     private String genre;
+    @Column (name = "year_of_publishing")
     private int publishYear;
+    @Column (name = "description")
     private String description;
     @OneToMany
+    @JoinColumn (name = "review_id")
     private List<Review> reviews;
-    @ManyToMany
+    @ManyToMany (mappedBy = "books")
     private List<Author> authors;
 
     public Book(String title, String genre, int publishYear, String description) {
