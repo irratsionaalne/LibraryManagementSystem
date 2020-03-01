@@ -22,9 +22,9 @@ public class DatabaseUtil {
 
         Properties properties = new Properties();
         properties.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-        properties.put(Environment.URL, "jdbc:mysql://saeed.chcsf7pbopuv.eu-west-2.rds.amazonaws.com/library");
-        properties.put(Environment.USER, "sekbodb");
-        properties.put(Environment.PASS, "sekbo2018");
+        properties.put(Environment.URL, "jdbc:mysql://localhost:3306/Petclinic");
+        properties.put(Environment.USER, "root");
+        properties.put(Environment.PASS, "Fa246813as");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         properties.put(Environment.HBM2DDL_AUTO, "none");
