@@ -1,0 +1,25 @@
+CREATE TABLE Author (
+    id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255)
+);
+CREATE TABLE Book (
+    id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    genre VARCHAR(255),
+    year_of_publishing INT,
+    description VARCHAR(255)
+);
+CREATE TABLE Review (
+    id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    score INT,
+    comment VARCHAR(255),
+    book_id int,
+    FOREIGN KEY (book_id) REFERENCES Book(id)
+);
+CREATE TABLE Author_Books (
+    author_id INT,
+    book_id INT,
+    FOREIGN KEY (author_id) REFERENCES Author(id),
+    FOREIGN KEY (book_id) REFERENCES Book(id)
+);

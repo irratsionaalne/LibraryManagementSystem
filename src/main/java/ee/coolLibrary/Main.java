@@ -8,15 +8,13 @@ import ee.coolLibrary.services.contracts.AuthorService;
 
 public class Main {
     public static void main(String[] args) {
-DatabaseUtil.init();
+        DatabaseUtil.init();
         AuthorRepository authorRepository = new AuthorRepository();
         AuthorService authorService = new AuthorServiceImpl(authorRepository);
-       Author saved = authorService.save(new Author("fsdfds","dawdw"));
+        Author saved = authorService.save(new Author("fsdfds", "dawdw"));
         System.out.println(saved);
         DatabaseUtil.shutdown();
     }
-
-
 
 
 }

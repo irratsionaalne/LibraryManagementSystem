@@ -19,15 +19,15 @@ public class AuthorServiceImplTest {
     private Author author1;
 
     @Before
-    public void init () {
-       authorRepository = new AuthorRepository();
+    public void init() {
+        authorRepository = new AuthorRepository();
         authorService = new AuthorServiceImpl(authorRepository);
         author = new Author("test 1", "test1");
         author1 = new Author("test 2", "test2");
     }
 
     @After
-    public void clear () {
+    public void clear() {
         authorRepository.delete(author);
         authorRepository.delete(author1);
     }
@@ -35,8 +35,8 @@ public class AuthorServiceImplTest {
 
     @Test
     public void testSave() {
-       Author test = authorService.save(author);
-       Author test1 = authorService.save(author1);
+        Author test = authorService.save(author);
+        Author test1 = authorService.save(author1);
         Assert.assertEquals(test, author);
         Assert.assertEquals(test1, author1);
         test = authorService.findById(author.getId());
@@ -49,8 +49,8 @@ public class AuthorServiceImplTest {
     public void testFindById() {
         authorService.save(author);
         authorService.save(author1);
-        Author  test = authorService.findById(author.getId());
-        Author  test1 = authorService.findById(author1.getId());
+        Author test = authorService.findById(author.getId());
+        Author test1 = authorService.findById(author1.getId());
         Assert.assertEquals(test, author);
         Assert.assertEquals(test1, author1);
     }

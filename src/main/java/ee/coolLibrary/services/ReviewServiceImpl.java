@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class ReviewServiceImpl extends AbstractService <ReviewRepository, Review, Integer> implements ReviewService {
+public class ReviewServiceImpl extends AbstractService<ReviewRepository, Review, Integer> implements ReviewService {
 
 
     public ReviewServiceImpl(ReviewRepository repository) {

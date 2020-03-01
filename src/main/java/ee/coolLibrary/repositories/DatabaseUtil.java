@@ -41,9 +41,7 @@ public class DatabaseUtil {
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-
            init();
-
         }
         return sessionFactory;
     }
