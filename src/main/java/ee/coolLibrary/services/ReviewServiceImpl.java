@@ -48,7 +48,7 @@ public class ReviewServiceImpl extends AbstractService <ReviewRepository, Review
     }
 
     @Override
-    public Iterable<Review> findAll() {
+    public Set<Review> findAll() {
         Set<Review> entitySet = new HashSet<>();
         for (Review entity : repository.findAll()) {
             entitySet.add(entity);

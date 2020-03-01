@@ -50,7 +50,7 @@ public class AuthorServiceImpl extends AbstractService<AuthorRepository, Author,
     }
 
     @Override
-    public Iterable<Author> findAll() {
+    public Set<Author> findAll() {
         Set<Author> authorSet = new HashSet<>();
         for (Author author : repository.findAll()) {
             authorSet.add(author);

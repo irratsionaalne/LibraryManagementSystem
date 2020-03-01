@@ -6,8 +6,6 @@ import ee.coolLibrary.repositories.DatabaseUtil;
 import ee.coolLibrary.services.AuthorServiceImpl;
 import ee.coolLibrary.services.contracts.AuthorService;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class Main {
     public static void main(String[] args) {
 DatabaseUtil.init();

@@ -1,7 +1,7 @@
 package ee.coolLibrary.services;
 
 import com.google.common.base.Strings;
-import ee.coolLibrary.entities.Author;
+
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.BookRepository;
@@ -46,7 +46,7 @@ public class BookServiceImpl extends AbstractService<BookRepository, Book, Integ
     }
 
     @Override
-    public Iterable<Book> findAll() {
+    public Set<Book> findAll() {
         Set<Book> bookSet = new HashSet<>();
         for (Book book : repository.findAll()) {
             bookSet.add(book);

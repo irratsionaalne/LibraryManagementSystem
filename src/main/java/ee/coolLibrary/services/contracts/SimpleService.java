@@ -1,5 +1,7 @@
 package ee.coolLibrary.services.contracts;
 
+import java.util.Set;
+
 public interface SimpleService <ENT, ID> {
 
 
@@ -7,7 +9,7 @@ public interface SimpleService <ENT, ID> {
     ENT findById (ID id);
     ENT delete (ENT entity);
     ENT update (ENT entity);
-    Iterable<ENT> findAll ();
+    Set<ENT> findAll ();
 
 
 
