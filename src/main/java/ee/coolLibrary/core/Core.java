@@ -26,11 +26,11 @@ public class Core {
     private static ReviewController reviewController;
     private static AuthorController authorController;
     public static void init () {
-        DatabaseUtil.getSessionFactory();
+        DatabaseUtil.init();
         //repositories settings
-        AuthorRepository authorRepository = new AuthorRepository(Author.class);
-        BookRepository bookRepository = new BookRepository(Book.class);
-        ReviewRepository reviewRepository = new ReviewRepository(Review.class);
+        AuthorRepository authorRepository = new AuthorRepository();
+        BookRepository bookRepository = new BookRepository();
+        ReviewRepository reviewRepository = new ReviewRepository();
         //services settings
         BookService bookService = new BookServiceImpl(bookRepository);
         AuthorService authorService = new AuthorServiceImpl(authorRepository);
