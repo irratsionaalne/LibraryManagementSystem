@@ -1,4 +1,4 @@
-package ee.coolLibrary;
+package ee.coolLibrary.services;
 
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
@@ -52,9 +52,9 @@ public class AuthorServiceImplTest {
 
     }
 
-    @Test (expected = RuntimeException.class)
-    public void tryException () {
-        authorService.save(new Author("",""));
+    @Test(expected = RuntimeException.class)
+    public void tryException() {
+        authorService.save(new Author("", ""));
     }
 
     @Test
@@ -72,17 +72,17 @@ public class AuthorServiceImplTest {
         authorService.save(author);
         String updatedName = "TestUserOne";
         author.setFirstName(updatedName);
-      Author updated =  authorService.update(author);
-Assert.assertEquals(author, updated);
-Assert.assertEquals(updated.getFirstName(), updatedName);
+        Author updated = authorService.update(author);
+        Assert.assertEquals(author, updated);
+        Assert.assertEquals(updated.getFirstName(), updatedName);
     }
 
     @Test
     public void testFindAll() {
         Author test = authorService.save(author);
         Author test1 = authorService.save(author1);
-        Set<Author> authors =  authorService.findAll();
-        Assert.assertTrue(authors.contains(test)&&authors.contains(test1));
+        Set<Author> authors = authorService.findAll();
+        Assert.assertTrue(authors.contains(test) && authors.contains(test1));
 
     }
 
@@ -106,7 +106,7 @@ Assert.assertEquals(updated.getFirstName(), updatedName);
         authorService.addBook(author, book);
         Author test = authorService.findById(author.getId());
         Assert.assertTrue(test.getBooks().contains(book));
-       test = authorService.deleteBook(author, book);
+        test = authorService.deleteBook(author, book);
         Assert.assertFalse(authorService.findById(test.getId()).getBooks().contains(book));
     }
 }
