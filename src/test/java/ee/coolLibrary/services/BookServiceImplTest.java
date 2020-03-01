@@ -105,7 +105,7 @@ public class BookServiceImplTest {
         List<Review> reviews = book.getReviews();
         bookService.addReview(book,review);
         Book test = bookService.findById(book.getId());
-        bookService.deleteReview(book,review);
+        bookService.deleteReview(test,review);
         List<Review> reviews1 = test.getReviews();
         Assert.assertEquals(reviews,reviews1);
     }
