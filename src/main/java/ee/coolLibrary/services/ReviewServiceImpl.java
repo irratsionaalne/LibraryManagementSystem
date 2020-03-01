@@ -1,14 +1,16 @@
 package ee.coolLibrary.services;
 
-import com.google.common.base.Strings;
 import ee.coolLibrary.entities.Author;
+import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.ReviewRepository;
 import ee.coolLibrary.services.contracts.ReviewService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ReviewServiceImpl extends AbstractService<ReviewRepository, Review, Integer> implements ReviewService {
 
@@ -45,6 +47,19 @@ public class ReviewServiceImpl extends AbstractService<ReviewRepository, Review,
         if (Objects.isNull(entity)) throw new RuntimeException("Review is update");
         if (Objects.isNull(entity.getId())) throw new RuntimeException("Review in not update");
         return repository.update(entity);
+    }
+
+    public Set<Review> findAllByAuthor (Author author) {
+       List<Book> books = author.getBooks();
+       Set <Review> reviews = new HashSet<>();
+        for (Book book : books) {
+            reviews.addAll(book.getReviews());
+        }
+        return reviews;
+    }
+
+    public Set<Review> findByBook (Book book) {
+        return findAll().stream().filter(review -> book.getReviews().contains(review)).collect(Collectors.toSet());
     }
 
     @Override

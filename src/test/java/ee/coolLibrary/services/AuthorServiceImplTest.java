@@ -95,12 +95,13 @@ public class AuthorServiceImplTest {
         Author test = authorService.findById(author.getId());
         Assert.assertTrue(test.getBooks().contains(book));
         authorService.deleteBook(author, book);
-
+        bookRepository.delete(book);
     }
+
+
 
     @Test
     public void testDeleteBook() {
-
         authorService.save(author);
         Book book = new Book("titletest", "gengetest", 1990, "desc");
         authorService.addBook(author, book);
@@ -108,5 +109,6 @@ public class AuthorServiceImplTest {
         Assert.assertTrue(test.getBooks().contains(book));
         test = authorService.deleteBook(author, book);
         Assert.assertFalse(authorService.findById(test.getId()).getBooks().contains(book));
+        bookRepository.delete(book);
     }
 }
