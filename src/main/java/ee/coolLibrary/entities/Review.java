@@ -1,13 +1,11 @@
 package ee.coolLibrary.entities;
 
 
-import ee.coolLibrary.entities.contracts.SimpleEntity;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Review implements SimpleEntity<Integer> {
+public class Review {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
@@ -42,7 +40,7 @@ public class Review implements SimpleEntity<Integer> {
     public Review() {
     }
 
-    @Override
+
     public Integer getId() {
         return id;
     }
