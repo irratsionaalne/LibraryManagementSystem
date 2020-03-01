@@ -55,8 +55,14 @@ public class AuthorServiceImplTest {
         Assert.assertEquals(test1, author1);
     }
 
+    @Test
     public void testUpdate() {
-
+        authorService.save(author);
+        String updatedName = "TestUserOne";
+        author.setFirstName(updatedName);
+      Author updated =  authorService.update(author);
+Assert.assertEquals(author, updated);
+Assert.assertEquals(updated.getFirstName(), updatedName);
     }
 
     public void testFindAll() {
