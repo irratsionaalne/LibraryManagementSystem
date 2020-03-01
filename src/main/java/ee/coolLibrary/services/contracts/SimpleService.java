@@ -1,8 +1,6 @@
 package ee.coolLibrary.services.contracts;
 
-import ee.coolLibrary.entities.contracts.SimpleEntity;
-
-public interface SimpleService <ENT extends SimpleEntity<ID>, ID> {
+public interface SimpleService <ENT, ID> {
 
 
     ENT save (ENT entity);
