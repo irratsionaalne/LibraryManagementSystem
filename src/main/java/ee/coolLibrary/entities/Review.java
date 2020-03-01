@@ -1,11 +1,13 @@
 package ee.coolLibrary.entities;
 
 
+import ee.coolLibrary.entities.contracts.SimpleEntity;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Review implements SimpleEntity <Integer> {
+public class Review implements SimpleEntity<Integer> {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")

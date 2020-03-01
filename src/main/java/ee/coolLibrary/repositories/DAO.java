@@ -1,14 +1,13 @@
 package ee.coolLibrary.repositories;
 
-import com.sun.xml.bind.v2.model.core.ID;
-import ee.coolLibrary.DatabaseUtil;
-import ee.coolLibrary.entities.Author;
-import ee.coolLibrary.entities.SimpleEntity;
+import ee.coolLibrary.entities.contracts.SimpleEntity;
+import ee.coolLibrary.repositories.DatabaseUtil;
+import ee.coolLibrary.repositories.contracts.SimpleRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRepository <ENT, ID> {
+public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRepository<ENT, ID> {
     private Session session = DatabaseUtil.getSessionFactory().openSession();
     private Transaction transaction = session.getTransaction();
 
@@ -62,6 +61,6 @@ public abstract class DAO <ENT extends SimpleEntity<ID>, ID> implements SimpleRe
 
     @Override
     public Iterable<ENT> findAll() {
-        return session.createCriteria(Object.class).list();
+        return session.createCriteria(entClass).list();
     }
 }

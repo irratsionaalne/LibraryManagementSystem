@@ -1,17 +1,14 @@
 package ee.coolLibrary;
 
-import ee.coolLibrary.controllers.AuthorControllerToCMD;
-import ee.coolLibrary.entities.Author;
-import ee.coolLibrary.repositories.AuthorRepository;
-import ee.coolLibrary.services.AuthorService;
+import ee.coolLibrary.controllers.MainControllerToCMD;
+import ee.coolLibrary.core.Core;
+import ee.coolLibrary.repositories.DatabaseUtil;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-    public static void main(String[] args) {
-        DatabaseUtil.getSessionFactory();
-   AuthorRepository authorRepository = new AuthorRepository(Author.class);
-        AuthorService authorService = new AuthorService(authorRepository);
-        AuthorControllerToCMD authorControllerToCMD = new AuthorControllerToCMD(authorService);
-        authorControllerToCMD.newAuthor();
+    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Core.run(MainControllerToCMD.class);
         DatabaseUtil.shutdown();
     }
 

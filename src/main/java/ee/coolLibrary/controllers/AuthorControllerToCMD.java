@@ -1,11 +1,12 @@
 package ee.coolLibrary.controllers;
 
+import ee.coolLibrary.controllers.contracts.AuthorController;
 import ee.coolLibrary.entities.Author;
-import ee.coolLibrary.services.AuthorService;
+import ee.coolLibrary.services.contracts.AuthorService;
 
 import java.util.Scanner;
 
-public class AuthorControllerToCMD {
+public class AuthorControllerToCMD implements AuthorController {
 
     AuthorService authorService;
 

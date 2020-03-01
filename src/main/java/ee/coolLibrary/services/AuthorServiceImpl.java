@@ -4,15 +4,18 @@ import com.google.common.base.Strings;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
+import ee.coolLibrary.services.contracts.AuthorService;
 
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class AuthorService extends AbstractService<AuthorRepository, Author, Integer> {
+public class AuthorServiceImpl extends AbstractService<AuthorRepository, Author, Integer> implements AuthorService {
 
-    public AuthorService(AuthorRepository repository) {
+
+
+    public AuthorServiceImpl(AuthorRepository repository) {
         super(repository);
     }
 
@@ -55,12 +58,14 @@ public class AuthorService extends AbstractService<AuthorRepository, Author, Int
         return authorSet;
     }
 
+    @Override
     public Author addBook (Author author, Book book) {
         if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.addBook(book);
        return save(author);
     }
 
+    @Override
     public Author deleteBook (Author author, Book book) {
         if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.removeBook(book);
