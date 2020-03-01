@@ -2,4 +2,3 @@
 /.idea/
 LibraryManagementSystem.iml
 target/
-/src/main/java/ee/coolLibrary/DatabaseUtil.java
