@@ -1,11 +1,12 @@
 package ee.coolLibrary.controllers;
 
+import ee.coolLibrary.controllers.contracts.AuthorController;
 import ee.coolLibrary.entities.Author;
-import ee.coolLibrary.services.AuthorService;
+import ee.coolLibrary.services.contracts.AuthorService;
 
 import java.util.Scanner;
 
-public class AuthorControllerToCMD {
+public class AuthorControllerToCMD implements AuthorController {
 
     AuthorService authorService;
 
@@ -14,16 +15,15 @@ public class AuthorControllerToCMD {
     }
 
 
-    public void newAuthor() {
+    public void newAuthor () {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the first name of the author");
-        String firstName = scanner.nextLine();
-        System.out.println("Please enter the last name of the author");
-        String lastName = scanner.nextLine();
-        Author author = new Author(firstName, lastName);
-        String answer = authorService.save(author);
-        System.out.println(answer);
+        String firstNane = scanner.nextLine();
+        String lastname = scanner.nextLine();
+        Author author = new Author(firstNane,lastname);
+       Author saved = authorService.save(author);
+        System.out.println(saved.getFirstName()+" "+saved.getLastName());
     }
+
 
 
 }

@@ -2,14 +2,15 @@ package ee.coolLibrary.services;
 
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.ReviewRepository;
+import ee.coolLibrary.services.contracts.ReviewService;
 
-public class ReviewService extends AbstractService <ReviewRepository, Review, Integer> {
-    public ReviewService(ReviewRepository repository) {
+public class ReviewServiceImpl extends AbstractService <ReviewRepository, Review, Integer> implements ReviewService {
+    public ReviewServiceImpl(ReviewRepository repository) {
         super(repository);
     }
 
     @Override
-    public String save(Review entity) {
+    public Review save(Review entity) {
         return null;
     }
 

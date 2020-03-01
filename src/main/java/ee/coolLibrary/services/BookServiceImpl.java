@@ -2,14 +2,15 @@ package ee.coolLibrary.services;
 
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.BookRepository;
+import ee.coolLibrary.services.contracts.BookService;
 
-public class BookService extends AbstractService<BookRepository, Book, Integer> {
-    public BookService(BookRepository repository) {
+public class BookServiceImpl extends AbstractService<BookRepository, Book, Integer> implements BookService {
+    public BookServiceImpl(BookRepository repository) {
         super(repository);
     }
 
     @Override
-    public String save(Book entity) {
+    public Book save(Book entity) {
         return null;
     }
 

@@ -4,45 +4,46 @@ import com.google.common.base.Strings;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
+import ee.coolLibrary.services.contracts.AuthorService;
 
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class AuthorService extends AbstractService<AuthorRepository, Author, Integer> {
+public class AuthorServiceImpl extends AbstractService<AuthorRepository, Author, Integer> implements AuthorService {
 
-    public AuthorService(AuthorRepository repository) {
+
+
+    public AuthorServiceImpl(AuthorRepository repository) {
         super(repository);
     }
 
     @Override
-    public String save(Author author) {
+    public Author save(Author author) {
+        if (Objects.isNull(author)) throw new RuntimeException("Author is null");
         if (Strings.isNullOrEmpty(author.getFirstName()) || Strings.isNullOrEmpty(author.getLastName()))
-            return ("Last name or first name shouldn't be null!!!");
-        Author saved = repository.save(author);
-        if (Objects.isNull(saved)) return "Something gone wrong";
-        return "Saved successful";
-
+            throw new RuntimeException("Last name or first name shouldn't be null!!!");
+        return repository.save(author);
     }
 
     @Override
     public Author findById(Integer id) {
-        if (Objects.isNull(id) || id < 0) throw new RuntimeException("ID can't be null");
+        if (Objects.isNull(id)||id<0) throw new RuntimeException("ID can't be null");
         return repository.findById(id);
     }
 
     @Override
     public Author delete(Author author) {
         if (Objects.isNull(author)) throw new RuntimeException("Author can't be null");
-        if (Objects.isNull(findById(author.getId()))) throw new RuntimeException("Author not found");
+        if (Objects.isNull(findById(author.getId()))) throw  new RuntimeException("Author not found");
         return repository.delete(author);
     }
 
     @Override
     public Author update(Author author) {
         if (Objects.isNull(author)) throw new RuntimeException("Author can't be null");
-        if (Objects.isNull(findById(author.getId()))) throw new RuntimeException("Author not found");
+        if (Objects.isNull(findById(author.getId()))) throw  new RuntimeException("Author not found");
         if (Strings.isNullOrEmpty(author.getFirstName()) || Strings.isNullOrEmpty(author.getLastName()))
             throw new RuntimeException("Names can't be null");
         return repository.update(author);
@@ -57,14 +58,16 @@ public class AuthorService extends AbstractService<AuthorRepository, Author, Int
         return authorSet;
     }
 
-    public String addBook(Author author, Book book) {
-        if (author == null || book == null) throw new IllegalArgumentException("book or author is null");
+    @Override
+    public Author addBook (Author author, Book book) {
+        if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.addBook(book);
-        return save(author);
+       return save(author);
     }
 
-    public String deleteBook(Author author, Book book) {
-        if (author == null || book == null) throw new IllegalArgumentException("book or author is null");
+    @Override
+    public Author deleteBook (Author author, Book book) {
+        if(author==null||book==null) throw new IllegalArgumentException("book or author is null");
         author.removeBook(book);
         return save(author);
     }

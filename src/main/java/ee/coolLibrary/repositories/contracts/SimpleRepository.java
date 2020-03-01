@@ -1,4 +1,4 @@
-package ee.coolLibrary.repositories;
+package ee.coolLibrary.repositories.contracts;
 
 public interface SimpleRepository <ENT, ID> {
     ENT save (ENT entity);

@@ -1,12 +1,11 @@
-package ee.coolLibrary.services;
+package ee.coolLibrary.services.contracts;
 
-import ee.coolLibrary.entities.SimpleEntity;
-import ee.coolLibrary.repositories.SimpleRepository;
+import ee.coolLibrary.entities.contracts.SimpleEntity;
 
 public interface SimpleService <ENT extends SimpleEntity<ID>, ID> {
 
 
-    String save (ENT entity);
+    ENT save (ENT entity);
     ENT findById (ID id);
     ENT delete (ENT entity);
     ENT update (ENT entity);

@@ -1,5 +1,7 @@
 package ee.coolLibrary.entities;
 
+import ee.coolLibrary.entities.contracts.SimpleEntity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "Book")
-public class Book implements SimpleEntity <Integer> {
+public class Book implements SimpleEntity<Integer> {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")

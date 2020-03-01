@@ -1,4 +1,4 @@
-package ee.coolLibrary;
+package ee.coolLibrary.repositories;
 
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
@@ -39,7 +39,7 @@ public class DatabaseUtil {
         return sessionFactory;
     }
 
-    static void shutdown() {
+   public static void shutdown() {
         if (sessionFactory != null) {
             sessionFactory.close();
         }
