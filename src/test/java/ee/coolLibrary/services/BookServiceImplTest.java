@@ -102,10 +102,10 @@ public class BookServiceImplTest {
     public void deleteReview() {
         bookService.save(book);
         Review review = new Review(book,5,"testcomment");
+        List<Review> reviews = book.getReviews();
         bookService.addReview(book,review);
         Book test = bookService.findById(book.getId());
-        List<Review> reviews = test.getReviews();
-        bookService.deleteReview(book,review);
+        bookService.deleteReview(test,review);
         List<Review> reviews1 = test.getReviews();
         Assert.assertEquals(reviews,reviews1);
     }
