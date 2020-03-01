@@ -68,7 +68,7 @@ public class Author {
     }
 
     public void removeBook(Book book) {
-        books.add(book);
+        books.remove(book);
     }
 
     @Override

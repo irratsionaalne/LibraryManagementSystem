@@ -3,6 +3,7 @@ package ee.coolLibrary.services;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
+import ee.coolLibrary.repositories.BookRepository;
 import ee.coolLibrary.services.contracts.AuthorService;
 
 import java.util.HashSet;
@@ -13,9 +14,13 @@ import static ee.coolLibrary.util.Strings.isNullOrEmpty;
 
 public class AuthorServiceImpl extends AbstractService<AuthorRepository, Author, Integer> implements AuthorService {
 
+BookRepository bookRepository;
 
-    public AuthorServiceImpl(AuthorRepository repository) {
-        super(repository);
+
+    public AuthorServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
+
+        super(authorRepository);
+        this.bookRepository=bookRepository;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class AuthorServiceImpl extends AbstractService<AuthorRepository, Author,
     @Override
     public Author addBook(Author author, Book book) {
         if (author == null || book == null) throw new IllegalArgumentException("book or author is null");
+        if (bookRepository.findById(book.getId())==null)  bookRepository.save(book);
         author.addBook(book);
         return save(author);
     }
