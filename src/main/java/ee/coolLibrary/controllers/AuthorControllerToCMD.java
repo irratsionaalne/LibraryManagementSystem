@@ -14,15 +14,16 @@ public class AuthorControllerToCMD {
     }
 
 
-    public void newAuthor () {
+    public void newAuthor() {
         Scanner scanner = new Scanner(System.in);
-        String firstNane = scanner.nextLine();
-        String lastname = scanner.nextLine();
-        Author author = new Author(firstNane,lastname);
-       String answer = authorService.save(author);
+        System.out.println("Please enter the first name of the author");
+        String firstName = scanner.nextLine();
+        System.out.println("Please enter the last name of the author");
+        String lastName = scanner.nextLine();
+        Author author = new Author(firstName, lastName);
+        String answer = authorService.save(author);
         System.out.println(answer);
     }
-
 
 
 }
