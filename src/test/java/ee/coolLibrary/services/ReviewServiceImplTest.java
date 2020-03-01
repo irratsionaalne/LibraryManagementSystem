@@ -4,14 +4,11 @@ import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.BookRepository;
 import ee.coolLibrary.repositories.ReviewRepository;
-import ee.coolLibrary.services.contracts.SimpleService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.List;
 import java.util.Set;
 
 public class ReviewServiceImplTest {
@@ -32,7 +29,7 @@ public class ReviewServiceImplTest {
         book=new Book("test title", "est genre", 1999, "testdesc");
         bookService.save(book);
         review = new Review(book, 5, "great book");
-        review1 = new Review(book, 13, "shit book);
+        review1 = new Review(book, 13, "shit book");
     }
 
     @After
