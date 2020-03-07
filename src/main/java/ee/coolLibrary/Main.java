@@ -10,31 +10,18 @@ import ee.coolLibrary.repositories.BookRepository;
 import ee.coolLibrary.repositories.DatabaseUtil;
 import ee.coolLibrary.services.AuthorServiceImpl;
 import ee.coolLibrary.services.BookServiceImpl;
+import ee.coolLibrary.services.contracts.AuthorService;
+import ee.coolLibrary.services.contracts.BookService;
+import ee.coolLibrary.services.contracts.ReviewService;
+import ee.coolLibrary.util.ServiceBuilder;
 
 public class Main {
     public static void main(String[] args) {
         DatabaseUtil.init();
-        AuthorRepository authorRepository = new AuthorRepository();
-        BookRepository bookRepository = new BookRepository();
-        AuthorServiceImpl authorService = new AuthorServiceImpl(authorRepository, bookRepository);
-        BookServiceImpl bookService = new BookServiceImpl(bookRepository);
-        Author author = new Author("jurhov", "juurikas");
-        Author author1 = new Author("tanel","lenat");
-        Book book = new Book("java for idiots","education",2020,"teaching java to dumb people like myself");
-        authorService.addBook(author,book);
-        authorService.addBook(author1,book);
-        bookService.save(book);
-        authorService.save(author);
-        authorService.save(author1);
-        Review review = new Review(1,book,3,"shit");
-        bookService.addReview(book,review);
-        AuthorDTO authorDTO = new AuthorDTO(author);
-        System.out.println(authorDTO.getJson());
-        AuthorDTO authorDTO1 = new AuthorDTO(author1);
-        System.out.println(authorDTO1.getJson());
-        Book book1 = bookService.findById(book.getId());
-        BookDTO bookDTO = new BookDTO(book1);
-        System.out.println(bookDTO.getJson());
+        BookService bookService = ServiceBuilder.getBookService();
+        AuthorService authorService = ServiceBuilder.getAuthorService();
+        ReviewService reviewService = ServiceBuilder.getReviewService();
+
         DatabaseUtil.shutdown();
     }
 

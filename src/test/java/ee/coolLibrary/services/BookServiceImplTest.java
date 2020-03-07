@@ -3,6 +3,9 @@ package ee.coolLibrary.services;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.BookRepository;
+import ee.coolLibrary.services.contracts.BookService;
+import ee.coolLibrary.util.RepositoryBuilder;
+import ee.coolLibrary.util.ServiceBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,15 +17,15 @@ import java.util.Set;
 public class BookServiceImplTest {
 
     private BookRepository bookRepository;
-    private BookServiceImpl bookService;
+    private BookService bookService;
     private Book book;
     private Book book1;
 
 
     @Before
     public void init() {
-        bookRepository = new BookRepository();
-        bookService = new BookServiceImpl(bookRepository);
+        bookRepository = RepositoryBuilder.getBookRepository();
+        bookService = ServiceBuilder.getBookService();
         book = new Book("Test title", "Test genre", 2020, "Test description");
         book1 = new Book("Test title 1", "Test genre 1", 2020, "Test description 1");
     }

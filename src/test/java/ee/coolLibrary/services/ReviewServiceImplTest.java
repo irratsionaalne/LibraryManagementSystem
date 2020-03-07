@@ -4,6 +4,10 @@ import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.entities.Review;
 import ee.coolLibrary.repositories.BookRepository;
 import ee.coolLibrary.repositories.ReviewRepository;
+import ee.coolLibrary.services.contracts.BookService;
+import ee.coolLibrary.services.contracts.ReviewService;
+import ee.coolLibrary.util.RepositoryBuilder;
+import ee.coolLibrary.util.ServiceBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,21 +17,21 @@ import java.util.Set;
 
 public class ReviewServiceImplTest {
     private ReviewRepository reviewRepository;
-    private ReviewServiceImpl reviewService;
+    private ReviewService reviewService;
     private BookRepository bookRepository;
-    private BookServiceImpl bookService;
+    private BookService bookService;
     private Book book;
     private Review review;
     private Review review1;
 
     @Before
     public void init() {
-        reviewRepository = new ReviewRepository();
-        reviewService = new ReviewServiceImpl(reviewRepository);
-        bookRepository=new BookRepository();
-        bookService= new BookServiceImpl(bookRepository);
+        reviewRepository = RepositoryBuilder.getReviewRepository();
+        reviewService = ServiceBuilder.getReviewService();
+        bookRepository=RepositoryBuilder.getBookRepository();
+        bookService= ServiceBuilder.getBookService();
         book=new Book("test title", "est genre", 1999, "testdesc");
-        bookService.save(book);
+        bookRepository.save(book);
         review = new Review(book, 5, "great book");
         review1 = new Review(book, 13, "shit book");
     }
@@ -35,11 +39,11 @@ public class ReviewServiceImplTest {
     @After
     public void clear() {
         if (reviewService.findAll().contains(review))
-            reviewService.delete(review);
+            reviewRepository.delete(review);
         if (reviewService.findAll().contains(review1))
-            reviewService.delete(review1);
+            reviewRepository.delete(review1);
         if (bookService.findAll().contains(book))
-            bookService.delete(book);
+            bookRepository.delete(book);
     }
 
     @Test

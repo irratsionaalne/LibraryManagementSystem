@@ -4,6 +4,9 @@ import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;
 import ee.coolLibrary.repositories.BookRepository;
+import ee.coolLibrary.services.contracts.AuthorService;
+import ee.coolLibrary.util.RepositoryBuilder;
+import ee.coolLibrary.util.ServiceBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,15 +20,15 @@ public class AuthorServiceImplTest {
 
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
-    private AuthorServiceImpl authorService;
+    private AuthorService authorService;
     private Author author;
     private Author author1;
 
     @Before
     public void init() {
-        authorRepository = new AuthorRepository();
-        bookRepository = new BookRepository();
-        authorService = new AuthorServiceImpl(authorRepository, bookRepository);
+        authorRepository = RepositoryBuilder.getAuthorRepository();
+        bookRepository = RepositoryBuilder.getBookRepository();
+        authorService = ServiceBuilder.getAuthorService();
         author = new Author("test 1", "test1");
         author1 = new Author("test 2", "test2");
     }
