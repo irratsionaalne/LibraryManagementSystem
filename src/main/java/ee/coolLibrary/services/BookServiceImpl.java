@@ -56,7 +56,7 @@ public class BookServiceImpl extends AbstractService<BookRepository, Book, Integ
     }
 
 
-    public Set<Book> findBooksByAuthor (Author author) {
+    public Set<Book> findBooksByAuthor(Author author) {
         return new HashSet<>(author.getBooks());
     }
 

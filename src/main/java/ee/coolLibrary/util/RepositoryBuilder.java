@@ -9,24 +9,24 @@ public class RepositoryBuilder {
     private static ReviewRepository reviewRepository;
     private static AuthorRepository authorRepository;
 
-    public static BookRepository getBookRepository () {
-        if (bookRepository==null) {
-            bookRepository=new BookRepository();
+    public static BookRepository getBookRepository() {
+        if (bookRepository == null) {
+            bookRepository = new BookRepository();
         }
         return bookRepository;
     }
 
-    public static ReviewRepository getReviewRepository () {
-        if (reviewRepository==null) {
-            reviewRepository=new ReviewRepository();
+    public static ReviewRepository getReviewRepository() {
+        if (reviewRepository == null) {
+            reviewRepository = new ReviewRepository();
         }
         return reviewRepository;
     }
 
 
-    public static AuthorRepository getAuthorRepository () {
-        if (authorRepository==null) {
-            authorRepository=new AuthorRepository();
+    public static AuthorRepository getAuthorRepository() {
+        if (authorRepository == null) {
+            authorRepository = new AuthorRepository();
         }
         return authorRepository;
     }

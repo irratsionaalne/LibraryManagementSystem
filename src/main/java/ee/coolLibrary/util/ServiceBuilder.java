@@ -15,27 +15,27 @@ public class ServiceBuilder {
     private static AuthorService authorService;
     private static ReviewService reviewService;
 
-    public static BookService getBookService () {
-        if (bookService==null) {
+    public static BookService getBookService() {
+        if (bookService == null) {
             BookRepository bookRepository = RepositoryBuilder.getBookRepository();
-            bookService=new BookServiceImpl(bookRepository);
+            bookService = new BookServiceImpl(bookRepository);
         }
         return bookService;
     }
 
 
-    public static AuthorService getAuthorService () {
-        if (authorService==null) {
+    public static AuthorService getAuthorService() {
+        if (authorService == null) {
             AuthorRepository authorRepository = RepositoryBuilder.getAuthorRepository();
             authorService = new AuthorServiceImpl(authorRepository, getBookService());
         }
         return authorService;
     }
 
-    public static ReviewService getReviewService () {
-        if (reviewService==null) {
+    public static ReviewService getReviewService() {
+        if (reviewService == null) {
             ReviewRepository reviewRepository = RepositoryBuilder.getReviewRepository();
-            reviewService= new ReviewServiceImpl(reviewRepository);
+            reviewService = new ReviewServiceImpl(reviewRepository);
         }
         return reviewService;
     }

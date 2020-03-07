@@ -100,7 +100,6 @@ public class AuthorServiceImplTest {
     }
 
 
-
     @Test
     public void testDeleteBook() {
         authorService.save(author);

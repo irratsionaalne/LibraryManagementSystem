@@ -5,7 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class DAO <ENT, ID> implements SimpleRepository<ENT, ID> {
+public abstract class DAO<ENT, ID> implements SimpleRepository<ENT, ID> {
     private Session session = DatabaseUtil.getSessionFactory().openSession();
     private Transaction transaction = session.getTransaction();
 

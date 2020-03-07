@@ -16,8 +16,7 @@ public class DatabaseUtil {
     private static SessionFactory sessionFactory;
 
 
-
-    public static void init () {
+    public static void init() {
         Configuration configuration = new Configuration();
 
         Properties properties = new Properties();
@@ -41,12 +40,12 @@ public class DatabaseUtil {
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-           init();
+            init();
         }
         return sessionFactory;
     }
 
-   public static void shutdown() {
+    public static void shutdown() {
         if (sessionFactory != null) {
             sessionFactory.close();
         }

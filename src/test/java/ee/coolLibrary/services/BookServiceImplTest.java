@@ -68,7 +68,7 @@ public class BookServiceImplTest {
         bookService.delete(book);
         bookService.delete(book1);
         Set<Book> bookSet1 = bookService.findAll();
-        Assert.assertEquals(bookSet,bookSet1);
+        Assert.assertEquals(bookSet, bookSet1);
     }
 
     @Test
@@ -77,8 +77,8 @@ public class BookServiceImplTest {
         String updatedName = "Testname";
         book.setTitle(updatedName);
         Book updated = bookService.update(book);
-        Assert.assertEquals(book,updated);
-        Assert.assertEquals(updated.getTitle(),updatedName);
+        Assert.assertEquals(book, updated);
+        Assert.assertEquals(updated.getTitle(), updatedName);
     }
 
     @Test
@@ -92,23 +92,23 @@ public class BookServiceImplTest {
     @Test
     public void addReview() {
         bookService.save(book);
-        Review review = new Review(book,5,"testcomment");
-        bookService.addReview(book,review);
+        Review review = new Review(book, 5, "testcomment");
+        bookService.addReview(book, review);
         Book test = bookService.findById(book.getId());
         Assert.assertTrue(test.getReviews().contains(review));
-        bookService.deleteReview(book,review);
+        bookService.deleteReview(book, review);
     }
 
     @Test
     public void deleteReview() {
         bookService.save(book);
-        Review review = new Review(book,5,"testcomment");
+        Review review = new Review(book, 5, "testcomment");
         List<Review> reviews = book.getReviews();
-        bookService.addReview(book,review);
+        bookService.addReview(book, review);
         Book test = bookService.findById(book.getId());
-        bookService.deleteReview(test,review);
+        bookService.deleteReview(test, review);
         List<Review> reviews1 = test.getReviews();
-        Assert.assertEquals(reviews,reviews1);
+        Assert.assertEquals(reviews, reviews1);
     }
 
     @Test

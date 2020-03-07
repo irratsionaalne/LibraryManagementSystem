@@ -28,9 +28,9 @@ public class ReviewServiceImplTest {
     public void init() {
         reviewRepository = RepositoryBuilder.getReviewRepository();
         reviewService = ServiceBuilder.getReviewService();
-        bookRepository=RepositoryBuilder.getBookRepository();
-        bookService= ServiceBuilder.getBookService();
-        book=new Book("test title", "est genre", 1999, "testdesc");
+        bookRepository = RepositoryBuilder.getBookRepository();
+        bookService = ServiceBuilder.getBookService();
+        book = new Book("test title", "est genre", 1999, "testdesc");
         bookRepository.save(book);
         review = new Review(book, 5, "great book");
         review1 = new Review(book, 13, "shit book");
@@ -75,12 +75,12 @@ public class ReviewServiceImplTest {
         reviewService.delete(review);
         reviewService.delete(review1);
         Set<Review> bookSet = reviewService.findAll();
-        Assert.assertFalse(bookSet.contains(review)&&bookSet.contains(review1));
+        Assert.assertFalse(bookSet.contains(review) && bookSet.contains(review1));
     }
 
     @Test
     public void update() {
-       Review test = reviewService.save(review);
+        Review test = reviewService.save(review);
         String updatedComment = "Testname2";
         test.setComment(updatedComment);
         Review updated = reviewService.update(review);

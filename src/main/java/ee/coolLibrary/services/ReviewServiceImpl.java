@@ -50,16 +50,16 @@ public class ReviewServiceImpl extends AbstractService<ReviewRepository, Review,
     }
 
 
-    public Set<Review> findAllByAuthor (Author author) {
-       List<Book> books = author.getBooks();
-       Set <Review> reviews = new HashSet<>();
+    public Set<Review> findAllByAuthor(Author author) {
+        List<Book> books = author.getBooks();
+        Set<Review> reviews = new HashSet<>();
         for (Book book : books) {
             reviews.addAll(book.getReviews());
         }
         return reviews;
     }
 
-    public Set<Review> findByBook (Book book) {
+    public Set<Review> findByBook(Book book) {
         return findAll().stream().filter(review -> book.getReviews().contains(review)).collect(Collectors.toSet());
     }
 

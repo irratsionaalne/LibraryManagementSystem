@@ -7,24 +7,24 @@ import java.util.Objects;
 @Entity
 public class Review {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
     @ManyToOne
-    @JoinColumn (name = "book_id")
+    @JoinColumn(name = "book_id")
     Book book;
-    @Column (name = "score")
+    @Column(name = "score")
     int score;
-    @Column (name = "comment")
+    @Column(name = "comment")
     String comment;
 
     public Review(Book book, int score, String comment) {
         this.book = book;
-        if (score>10) {
-            score=10;
+        if (score > 10) {
+            score = 10;
         }
-        if (score<0) {
-            score=0;
+        if (score < 0) {
+            score = 0;
         }
         this.score = score;
         this.comment = comment;

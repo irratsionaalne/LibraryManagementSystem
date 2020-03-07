@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table (name = "Book")
+@Table(name = "Book")
 public class Book {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    @Column (name = "title")
+    @Column(name = "title")
     private String title;
-    @Column (name = "genre")
+    @Column(name = "genre")
     private String genre;
-    @Column (name = "year_of_publishing")
+    @Column(name = "year_of_publishing")
     private int publishYear;
-    @Column (name = "description")
+    @Column(name = "description")
     private String description;
-    @OneToMany (mappedBy = "book")
+    @OneToMany(mappedBy = "book")
     private List<Review> reviews;
-    @ManyToMany (mappedBy = "books")
+    @ManyToMany(mappedBy = "books")
     private List<Author> authors;
 
     public Book(String title, String genre, int publishYear, String description) {
@@ -30,8 +30,8 @@ public class Book {
         this.genre = genre;
         this.publishYear = publishYear;
         this.description = description;
-        this.reviews= new ArrayList<>();
-        this.authors= new ArrayList<>();
+        this.reviews = new ArrayList<>();
+        this.authors = new ArrayList<>();
     }
 
     public Book(int id, String title, String genre, int publishYear, String description, List<Review> reviews, List<Author> authors) {
@@ -91,16 +91,19 @@ public class Book {
         this.description = description;
     }
 
-    public void addReview (Review review) {
+    public void addReview(Review review) {
         reviews.add(review);
     }
-    public void deleteReview (Review review) {
+
+    public void deleteReview(Review review) {
         reviews.remove(review);
     }
+
     public void addAuthor(Author author) {
         authors.add(author);
     }
-    public void deleteAuthor (Author author) {
+
+    public void deleteAuthor(Author author) {
         authors.remove(author);
     }
 
