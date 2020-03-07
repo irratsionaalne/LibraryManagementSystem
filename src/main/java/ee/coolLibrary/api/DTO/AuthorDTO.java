@@ -10,10 +10,12 @@ import java.util.Map;
 
 public class AuthorDTO {
 
+    private int id;
     private String name;
     private Map<Integer, String> books;
 
     public AuthorDTO(Author author) {
+        this.id=author.getId();
         this.name = author.getFirstName() + " " + author.getLastName();
         this.books = new HashMap<>();
         author.getBooks().forEach(book -> books.put(book.getId(), book.getTitle()));
@@ -31,5 +33,13 @@ public class AuthorDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

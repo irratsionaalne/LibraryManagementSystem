@@ -10,6 +10,8 @@ import ee.coolLibrary.services.contracts.BookService;
 import ee.coolLibrary.services.contracts.ReviewService;
 import ee.coolLibrary.util.ServiceBuilder;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         DatabaseUtil.init();
@@ -17,10 +19,9 @@ public class Main {
         AuthorService authorService = ServiceBuilder.getAuthorService();
         ReviewService reviewService = ServiceBuilder.getReviewService();
         AuthorAPI authorAPI = new AuthorAPI();
-
-        System.out.println(authorAPI.findById("100"));
-        String author = new AuthorDTO(new Author("hello", "helloooooo")).getJson();
-        System.out.println(authorAPI.save(author));
+Author author = new Author(999, "fnme", "lname", new ArrayList<>());
+        System.out.println(authorAPI.delete(new AuthorDTO(author).getJson()));
+        System.out.println(authorAPI.findAll());
         DatabaseUtil.shutdown();
     }
 
