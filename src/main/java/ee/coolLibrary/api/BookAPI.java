@@ -23,7 +23,12 @@ public class BookAPI implements LibraryAPI<String> {
 
     @Override
     public String save(String s) {
-        bookDTO = gson.fromJson(s, BookDTO.class);
+        try {
+
+            bookDTO = gson.fromJson(s, BookDTO.class);
+        } catch (Exception e) {
+            return "not a Json!";
+        }
         String title = bookDTO.getTitle();
         String genre = bookDTO.getGenre();
         int publishingYear = bookDTO.getPublishYear();
@@ -35,13 +40,26 @@ public class BookAPI implements LibraryAPI<String> {
 
     @Override
     public String findById(String s) {
-        Book book = bookService.findById(Integer.parseInt(s));
+        Book book;
+        try {
+            book = bookService.findById(Integer.parseInt(s));
+        } catch (Exception e) {
+            return "Wrong Id format";
+        }
+        if (book==null) {
+            return "book not found";
+        }
         return new BookDTO(book).getJson();
     }
 
     @Override
     public String delete(String s) {
-        bookDTO = gson.fromJson(s, BookDTO.class);
+        try {
+
+            bookDTO = gson.fromJson(s, BookDTO.class);
+        } catch (Exception e) {
+            return "not a Json!";
+        }
         Book book = bookService.findById(bookDTO.getId());
         if (book == null){
             return "Book not found";
@@ -52,8 +70,16 @@ public class BookAPI implements LibraryAPI<String> {
 
     @Override
     public String update(String s) {
-        bookDTO = gson.fromJson(s,BookDTO.class);
+        try {
+
+            bookDTO = gson.fromJson(s, BookDTO.class);
+        } catch (Exception e) {
+            return "not a Json!";
+        }
         Book book = bookService.findById(bookDTO.getId());
+        if (book==null) {
+            return "Book not found";
+        }
         book.setTitle(bookDTO.getTitle());
         book.setGenre(bookDTO.getGenre());
         book.setDescription(bookDTO.getDescription());

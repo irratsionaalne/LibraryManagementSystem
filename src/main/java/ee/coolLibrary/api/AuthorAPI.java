@@ -24,7 +24,12 @@ public class AuthorAPI implements LibraryAPI <String> {
     @Override
     public String save(String s) {
         Gson gson = new Gson();
-      AuthorDTO authorDTO =  gson.fromJson(s, AuthorDTO.class);
+        AuthorDTO authorDTO;
+        try {
+             authorDTO = gson.fromJson(s, AuthorDTO.class);
+        } catch (Exception e) {
+            return "wrong format";
+        }
       String [] flName = authorDTO.getName().split(" ");
       if (flName.length!=2) {
           return  "error: need First name and last name";
@@ -43,13 +48,21 @@ public class AuthorAPI implements LibraryAPI <String> {
             return "error: Id need to be integer";
         }
         Author author = authorService.findById(id);
+        if (author==null) {
+            return "author not found";
+        }
         return new AuthorDTO(author).getJson();
     }
 
     @Override
     public String delete(String s) {
+        AuthorDTO authorDTO = null;
         Gson gson = new Gson();
-        AuthorDTO authorDTO = gson.fromJson(s, AuthorDTO.class);
+        try {
+           authorDTO = gson.fromJson(s, AuthorDTO.class);
+        } catch (Exception e) {
+
+        }
         Author author = authorService.findById(authorDTO.getId());
         if (author==null) {
             return "author not found";
@@ -61,8 +74,16 @@ public class AuthorAPI implements LibraryAPI <String> {
     @Override
     public String update(String s) {
         Gson gson = new Gson();
-        AuthorDTO authorDTO = gson.fromJson(s, AuthorDTO.class);
+        AuthorDTO authorDTO = null;
+        try {
+            authorDTO = gson.fromJson(s, AuthorDTO.class);
+        } catch (Exception e) {
+            return "wrong format";
+        }
         Author author = authorService.findById(authorDTO.getId());
+        if (author==null) {
+            return "author not found";
+        }
         String [] flName = authorDTO.getName().split(" ");
         if (flName.length!=2) {
             return "wrong format of name";
@@ -81,7 +102,7 @@ public class AuthorAPI implements LibraryAPI <String> {
         return gson.toJson(authorDTOS);
     }
 
-    public String addBookFromAuthor (String authorId, String bookId) {
+    public String addBookToAuthor (String authorId, String bookId) {
         int authorIdInt, bookIdInt;
         try {
           authorIdInt=  Integer.parseInt(authorId);
