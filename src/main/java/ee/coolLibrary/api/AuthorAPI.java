@@ -5,6 +5,7 @@ import ee.coolLibrary.api.DTO.AuthorDTO;
 import ee.coolLibrary.api.contracts.LibraryAPI;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.services.contracts.AuthorService;
+import ee.coolLibrary.services.contracts.BookService;
 import ee.coolLibrary.util.ServiceBuilder;
 
 import java.util.HashSet;
@@ -13,9 +14,11 @@ import java.util.Set;
 public class AuthorAPI implements LibraryAPI <String> {
 
     AuthorService authorService;
+    BookService bookService;
 
     public AuthorAPI() {
         this.authorService = ServiceBuilder.getAuthorService();
+        this.bookService = ServiceBuilder.getBookService();
     }
 
     @Override
@@ -76,6 +79,30 @@ public class AuthorAPI implements LibraryAPI <String> {
         Set<AuthorDTO> authorDTOS = new HashSet<>();
         authorService.findAll().forEach(author -> authorDTOS.add(new AuthorDTO(author)));
         return gson.toJson(authorDTOS);
+    }
+
+    public String addBookFromAuthor (String authorId, String bookId) {
+        int authorIdInt, bookIdInt;
+        try {
+          authorIdInt=  Integer.parseInt(authorId);
+          bookIdInt = Integer.parseInt(bookId);
+        } catch (Exception e) {
+            return "Wrong parameters";
+        }
+        authorService.addBook(authorService.findById(authorIdInt), bookService.findById(bookIdInt));
+        return "added";
+    }
+
+    public String deleteBookFromAuthor (String authorId, String bookId) {
+        int authorIdInt, bookIdInt;
+        try {
+            authorIdInt=  Integer.parseInt(authorId);
+            bookIdInt = Integer.parseInt(bookId);
+        } catch (Exception e) {
+            return "Wrong parameters";
+        }
+        authorService.deleteBook(authorService.findById(authorIdInt), bookService.findById(bookIdInt));
+        return "deleted";
     }
 
 
