@@ -1,4 +1,4 @@
-package ee.coolLibrary.api;
+package ee.coolLibrary.api.DTO;
 
 
 import com.google.gson.Gson;
@@ -25,4 +25,11 @@ public class AuthorDTO {
         return gson.toJson(this);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

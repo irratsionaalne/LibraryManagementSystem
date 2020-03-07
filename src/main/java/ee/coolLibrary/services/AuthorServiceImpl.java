@@ -1,5 +1,6 @@
 package ee.coolLibrary.services;
 
+import ee.coolLibrary.api.DTO.AuthorDTO;
 import ee.coolLibrary.entities.Author;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.repositories.AuthorRepository;

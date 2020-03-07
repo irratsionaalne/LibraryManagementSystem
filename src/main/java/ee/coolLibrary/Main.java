@@ -1,15 +1,10 @@
 package ee.coolLibrary;
 
-import ee.coolLibrary.api.AuthorDTO;
-import ee.coolLibrary.api.BookDTO;
+import ee.coolLibrary.api.AuthorAPI;
+import ee.coolLibrary.api.DTO.AuthorDTO;
+import ee.coolLibrary.api.DTO.BookDTO;
 import ee.coolLibrary.entities.Author;
-import ee.coolLibrary.entities.Book;
-import ee.coolLibrary.entities.Review;
-import ee.coolLibrary.repositories.AuthorRepository;
-import ee.coolLibrary.repositories.BookRepository;
 import ee.coolLibrary.repositories.DatabaseUtil;
-import ee.coolLibrary.services.AuthorServiceImpl;
-import ee.coolLibrary.services.BookServiceImpl;
 import ee.coolLibrary.services.contracts.AuthorService;
 import ee.coolLibrary.services.contracts.BookService;
 import ee.coolLibrary.services.contracts.ReviewService;
@@ -21,7 +16,11 @@ public class Main {
         BookService bookService = ServiceBuilder.getBookService();
         AuthorService authorService = ServiceBuilder.getAuthorService();
         ReviewService reviewService = ServiceBuilder.getReviewService();
+        AuthorAPI authorAPI = new AuthorAPI();
 
+        System.out.println(authorAPI.findById("100"));
+        String author = new AuthorDTO(new Author("hello", "helloooooo")).getJson();
+        System.out.println(authorAPI.save(author));
         DatabaseUtil.shutdown();
     }
 
