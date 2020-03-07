@@ -15,7 +15,6 @@ public class Main {
         AuthorServiceImpl authorService = new AuthorServiceImpl(authorRepository, bookRepository);
         Author author = new Author("firstname", "lastname");
         AuthorDTO authorDTO = new AuthorDTO();
-        System.out.println(authorDTO.get(author));
         DatabaseUtil.shutdown();
     }
 
