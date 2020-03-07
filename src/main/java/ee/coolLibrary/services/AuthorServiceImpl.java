@@ -77,6 +77,7 @@ private BookService bookService;
     public Author deleteBook(Author author, Book book) {
         if (author == null || book == null) throw new IllegalArgumentException("book or author is null");
         author.removeBook(book);
+        book.deleteAuthor(author);
         return save(author);
     }
 }

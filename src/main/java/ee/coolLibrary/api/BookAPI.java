@@ -5,14 +5,17 @@ import ee.coolLibrary.api.DTO.BookDTO;
 import ee.coolLibrary.api.contracts.LibraryAPI;
 import ee.coolLibrary.entities.Book;
 import ee.coolLibrary.services.contracts.BookService;
+import ee.coolLibrary.services.contracts.ReviewService;
 import ee.coolLibrary.util.ServiceBuilder;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.HashSet;
 import java.util.Set;
 
 public class BookAPI implements LibraryAPI<String> {
 
     BookService bookService;
+    ReviewService reviewService;
     Gson gson;
     BookDTO bookDTO;
 
@@ -93,5 +96,29 @@ public class BookAPI implements LibraryAPI<String> {
         Set<BookDTO> bookDTOS = new HashSet<>();
         bookService.findAll().forEach(book -> bookDTOS.add(new BookDTO(book)));
         return gson.toJson(bookDTOS);
+    }
+
+    public String addReviewToBook(String bookID, String reviewID){
+        int bookIDint, reviewIDint;
+        try {
+            bookIDint = Integer.parseInt(bookID);
+            reviewIDint = Integer.parseInt(reviewID);
+        } catch (Exception e){
+            return "Invalid parameters";
+        }
+        bookService.addReview(bookService.findById(bookIDint), reviewService.findById(reviewIDint));
+        return "Review Added";
+    }
+
+    public String deleteReviewFromBook(String bookID, String reviewID){
+        int bookIDint, reviewIDint;
+        try {
+            bookIDint = Integer.parseInt(bookID);
+            reviewIDint = Integer.parseInt(reviewID);
+        } catch (Exception e){
+            return "Invalid parameters";
+        }
+        bookService.deleteReview(bookService.findById(bookIDint), reviewService.findById(reviewIDint));
+        return "Deleted review";
     }
 }

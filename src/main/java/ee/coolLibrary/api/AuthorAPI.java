@@ -11,7 +11,7 @@ import ee.coolLibrary.util.ServiceBuilder;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AuthorAPI implements LibraryAPI <String> {
+public class AuthorAPI implements LibraryAPI<String> {
 
     AuthorService authorService;
     BookService bookService;
@@ -26,16 +26,16 @@ public class AuthorAPI implements LibraryAPI <String> {
         Gson gson = new Gson();
         AuthorDTO authorDTO;
         try {
-             authorDTO = gson.fromJson(s, AuthorDTO.class);
+            authorDTO = gson.fromJson(s, AuthorDTO.class);
         } catch (Exception e) {
             return "wrong format";
         }
-      String [] flName = authorDTO.getName().split(" ");
-      if (flName.length!=2) {
-          return  "error: need First name and last name";
-      }
-      Author author = new Author(flName[0], flName[1]);
-      authorService.save(author);
+        String[] flName = authorDTO.getName().split(" ");
+        if (flName.length != 2) {
+            return "error: need First name and last name";
+        }
+        Author author = new Author(flName[0], flName[1]);
+        authorService.save(author);
         return findById(author.getId().toString());
     }
 
@@ -44,11 +44,11 @@ public class AuthorAPI implements LibraryAPI <String> {
         int id;
         try {
             id = Integer.parseInt(s);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             return "error: Id need to be integer";
         }
         Author author = authorService.findById(id);
-        if (author==null) {
+        if (author == null) {
             return "author not found";
         }
         return new AuthorDTO(author).getJson();
@@ -59,12 +59,12 @@ public class AuthorAPI implements LibraryAPI <String> {
         AuthorDTO authorDTO = null;
         Gson gson = new Gson();
         try {
-           authorDTO = gson.fromJson(s, AuthorDTO.class);
+            authorDTO = gson.fromJson(s, AuthorDTO.class);
         } catch (Exception e) {
 
         }
         Author author = authorService.findById(authorDTO.getId());
-        if (author==null) {
+        if (author == null) {
             return "author not found";
         }
         authorService.delete(author);
@@ -81,16 +81,16 @@ public class AuthorAPI implements LibraryAPI <String> {
             return "wrong format";
         }
         Author author = authorService.findById(authorDTO.getId());
-        if (author==null) {
+        if (author == null) {
             return "author not found";
         }
-        String [] flName = authorDTO.getName().split(" ");
-        if (flName.length!=2) {
+        String[] flName = authorDTO.getName().split(" ");
+        if (flName.length != 2) {
             return "wrong format of name";
         }
         author.setFirstName(flName[0]);
         author.setLastName(flName[1]);
-       Author saved = authorService.update(author);
+        Author saved = authorService.update(author);
         return new AuthorDTO(saved).getJson();
     }
 
@@ -102,11 +102,11 @@ public class AuthorAPI implements LibraryAPI <String> {
         return gson.toJson(authorDTOS);
     }
 
-    public String addBookToAuthor (String authorId, String bookId) {
+    public String addBookToAuthor(String authorId, String bookId) {
         int authorIdInt, bookIdInt;
         try {
-          authorIdInt=  Integer.parseInt(authorId);
-          bookIdInt = Integer.parseInt(bookId);
+            authorIdInt = Integer.parseInt(authorId);
+            bookIdInt = Integer.parseInt(bookId);
         } catch (Exception e) {
             return "Wrong parameters";
         }
@@ -114,10 +114,10 @@ public class AuthorAPI implements LibraryAPI <String> {
         return "added";
     }
 
-    public String deleteBookFromAuthor (String authorId, String bookId) {
+    public String deleteBookFromAuthor(String authorId, String bookId) {
         int authorIdInt, bookIdInt;
         try {
-            authorIdInt=  Integer.parseInt(authorId);
+            authorIdInt = Integer.parseInt(authorId);
             bookIdInt = Integer.parseInt(bookId);
         } catch (Exception e) {
             return "Wrong parameters";
