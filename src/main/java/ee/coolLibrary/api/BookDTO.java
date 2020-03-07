@@ -27,6 +27,7 @@ public class BookDTO {
         book.getAuthors().forEach(author -> listOfAuthors.put(author.getId(), author.getFirstName()+ " "+ author.getLastName()));
         this.reviews = new ArrayList<>();
         book.getReviews().forEach(review -> reviews.add(new ReviewDTO(review).getJson()));
+        
     }
 
     public String getJson() {
