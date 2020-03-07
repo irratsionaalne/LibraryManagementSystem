@@ -15,7 +15,7 @@ public class BookDTO {
     String description;
     int publishYear;
     Map<Integer, String> listOfAuthors;
-    List<String> reviews;
+    List<ReviewDTO> reviews;
 
     public BookDTO(Book book) {
         this.id = book.getId();
@@ -26,8 +26,8 @@ public class BookDTO {
         this.listOfAuthors = new HashMap<>();
         book.getAuthors().forEach(author -> listOfAuthors.put(author.getId(), author.getFirstName()+ " "+ author.getLastName()));
         this.reviews = new ArrayList<>();
-        book.getReviews().forEach(review -> reviews.add(new ReviewDTO(review).getJson()));
-        
+        book.getReviews().forEach(review -> reviews.add(new ReviewDTO(review)));
+
     }
 
     public String getJson() {
