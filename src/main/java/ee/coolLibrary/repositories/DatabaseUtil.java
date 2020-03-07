@@ -27,7 +27,7 @@ public class DatabaseUtil {
         properties.put(Environment.PASS, "sekbo2018");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-        properties.put(Environment.HBM2DDL_AUTO, "none");
+        properties.put(Environment.HBM2DDL_AUTO, "update");
         configuration.addAnnotatedClass(Author.class);
         configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Review.class);

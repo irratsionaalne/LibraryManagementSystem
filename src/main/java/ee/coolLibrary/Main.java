@@ -19,13 +19,14 @@ public class Main {
         BookServiceImpl bookService = new BookServiceImpl(bookRepository);
         Author author = new Author("firstname", "lastname");
         Author author1 = new Author("xyz","zyx");
-        AuthorDTO authorDTO = new AuthorDTO(author);
+
         Book book = new Book("test","testing",2000,"desc");
         author.addBook(book);
         author1.addBook(book);
         bookService.save(book);
         authorService.save(author);
         authorService.save(author1);
+        AuthorDTO authorDTO = new AuthorDTO(authorService.findById(author.getId()));
         System.out.println(authorDTO.getJson());
         Book book1 = bookService.findById(book.getId());
         BookDTO bookDTO1 = new BookDTO(book1);
