@@ -49,6 +49,7 @@ public class ReviewServiceImpl extends AbstractService<ReviewRepository, Review,
         return repository.update(entity);
     }
 
+
     public Set<Review> findAllByAuthor (Author author) {
        List<Book> books = author.getBooks();
        Set <Review> reviews = new HashSet<>();

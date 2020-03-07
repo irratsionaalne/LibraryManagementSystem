@@ -107,4 +107,9 @@ public class BookServiceImplTest {
         List<Review> reviews1 = test.getReviews();
         Assert.assertEquals(reviews,reviews1);
     }
+
+    @Test
+    public void findBooksByAuthor() {
+
+    }
 }
