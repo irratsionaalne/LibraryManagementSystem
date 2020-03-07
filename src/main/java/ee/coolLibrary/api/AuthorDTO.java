@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class AuthorDTO {
 
- private String name;
- private Map <Integer, String> books;
+    private String name;
+    private Map<Integer, String> books;
 
     public AuthorDTO(Author author) {
         this.name = author.getFirstName() + " " + author.getLastName();
@@ -20,8 +20,7 @@ public class AuthorDTO {
     }
 
 
-
-    public String getJson () {
+    public String getJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }

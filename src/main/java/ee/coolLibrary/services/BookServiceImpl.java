@@ -11,7 +11,6 @@ import ee.coolLibrary.services.contracts.BookService;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class BookServiceImpl extends AbstractService<BookRepository, Book, Integer> implements BookService {
     public BookServiceImpl(BookRepository repository) {

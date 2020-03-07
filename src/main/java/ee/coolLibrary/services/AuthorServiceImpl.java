@@ -67,6 +67,7 @@ BookRepository bookRepository;
         if (author == null || book == null) throw new IllegalArgumentException("book or author is null");
         if (bookRepository.findById(book.getId())==null)  bookRepository.save(book);
         author.addBook(book);
+        book.addAuthor(author);
         return save(author);
     }
 
